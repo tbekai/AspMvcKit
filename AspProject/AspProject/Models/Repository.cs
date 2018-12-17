@@ -5,9 +5,15 @@ using System.Linq;
 using System.Web;
 
 namespace AspProject.Models
-{
+{ 
     public class Repository<T> :DbSet<T> where T :Model
-    {/// <summary>
+    {   public DbSet<T> Table { get; protected set; }
+
+        public Repository(DbContext Db)
+        {
+            Table = Db.Set<T>();
+        }
+        /// <summary>
     /// retourne un élément correspondant a un id renseigné en parametre
     /// </summary>
     /// <param name="id"></param>

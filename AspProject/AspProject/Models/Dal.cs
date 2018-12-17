@@ -9,7 +9,7 @@ namespace AspProject.Models
     {// les dbsets reference les tables ici 
 
         private static Dal _context;
-        public static Dal Db // accesseur nommé db, verifie si on est sur une unique instance de dal et renvoi celle deaj trouver
+        public static Dal Db // accesseur nommé db, verifie si on est sur une unique instance de dal et renvoi celle deja trouver
         {
             get
             {
@@ -18,9 +18,9 @@ namespace AspProject.Models
                     _context = new Dal();
                 }
                 return _context;
-                
+
             }
-               
+
 
         }
         public Dal()
@@ -39,5 +39,8 @@ namespace AspProject.Models
             base.OnModelCreating(modelBuilder); // definit comment la base de donnée est initialise, les modifs, les insertions, et recrée la base a chaque fois qu'elle change
             Database.SetInitializer(new DropCreateDatabaseIfModelChanges<Dal>()); // si la couche modele change la base de données change
         }
-    }
+
+        public Repository<User> Users { get; set; }
+
+    }    
 }
